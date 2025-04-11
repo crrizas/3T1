@@ -1,43 +1,36 @@
-document.addEventListener('DOMContentLoaded', function(){
-    const botaoDeAcessibilidade = document.getElementById('botao-acessibilidade')
-    const opcoesDeAcessibilidade = document.getElementById('opcoes-acessibilidade')
- 
-    botaoDeAcessibilidade.addEventListener('click', function (){
-     botaoDeAcessibilidade.classList.toggle('rotacao-botao');
-     opcoesDeAcessibilidade.classList.toggle('apresenta-lista')
- 
-     const botaoSelecionado = botaoDeAcessibilidade.getAttribute('aria-expanded') === 'true';
-     botaoDeAcessibilidade.setAttribute('aria-expanded', !botaoSelecionado)
-   
-    })
- 
-     const aumentaFonteBotao = document.getElementById('aumentar-fonte');
-     const diminuiFonteBotao = document.getElementById('diminuir-fonte');
-     
-     const alternaContraste = document.getElementById('alterna-contraste')
- 
-     let tamanhoAtualFonte = 1;
- 
-     aumentaFonteBotao.addEventListener('click', function(){
-         tamanhoAtualFonte += 0.1;
-         document.body.style.fontSize = `${tamanhoAtualFonte}rem`
- 
-     })
- 
-     diminuiFonteBotao.addEventListener('click', function(){
-         tamanhoAtualFonte -= 0.1;
-         document.body.style.fontSize = `${tamanhoAtualFonte}rem`
- 
-     })
- 
-     alternaContraste.addEventListener('click', function(){
-         document.body.classList.toggle('alto-contraste')
-     })
- 
- 
- })
- 
- ScrollReveal().reveal('#inicio', { delay: 500 });
- ScrollReveal().reveal('#tropicalia', { delay: 500 });
- ScrollReveal().reveal('#galeria', { delay: 500 });
- ScrollReveal().reveal('#contato', { delay: 500 });
+document.addEventListener("DOMContentLoaded", function () {
+    const btnAumentar = document.getElementById("aumentar-fonte");
+    const btnDiminuir = document.getElementById("diminuir-fonte");
+    const root = document.documentElement;
+    let tamanhoFonteAtual = 100;
+
+    btnAumentar.addEventListener("click", () => {
+        if (tamanhoFonteAtual < 150) {
+            tamanhoFonteAtual += 10;
+            root.style.fontSize = `${tamanhoFonteAtual}%`;
+        }
+    });
+
+    btnDiminuir.addEventListener("click", () => {
+        if (tamanhoFonteAtual > 70) {
+            tamanhoFonteAtual -= 10;
+            root.style.fontSize = `${tamanhoFonteAtual}%`;
+        }
+    });
+
+    const botaoAcessibilidade = document.getElementById("botao-acessibilidade");
+    const opcoes = document.getElementById("opcoes-acessibilidade");
+
+    botaoAcessibilidade.addEventListener("click", () => {
+        opcoes.classList.toggle("apresenta-lista");
+    });
+
+    // Modo escuro
+    const botaoModoEscuro = document.getElementById("modo-escuro");
+    const body = document.body;
+
+    botaoModoEscuro.addEventListener("click", () => {
+        body.classList.toggle("modo-escuro");
+        botaoModoEscuro.textContent = body.classList.contains("modo-escuro") ? "Modo Claro" : "Modo Escuro";
+    });
+});
